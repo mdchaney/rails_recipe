@@ -22,6 +22,15 @@
   color: #FFF !important;
   border: none;
 }
+.jumbotron {
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+}
+@include media-breakpoint-up(sm) {
+  .jumbotron {
+    padding: 4rem 2rem;
+  }
+}
 .hero {
   width: 100vw;
   height: 50vh;

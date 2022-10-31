@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-12 col-lg-6 offset-lg-3">
+      <h1 class="font-weight-normal mb-5">
+        Add a new recipe to our awesome recipe collection.
+      </h1>
+      <%= form_with(model: recipe) do |form| %>
+        <% if recipe.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+            <ul>
+              <% recipe.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group my-3">
+          <%= form.label :name, 'Recipe name', class: 'form-label' %>
+          <%= form.text_field :name, required: true, class: 'form-control' %>
+        </div>
+        <div class="form-group my-3">
+          <%= form.label :ingredients, class: 'form-label' %>
+          <%= form.text_area :ingredients, required: true, class: 'form-control' %>
+          <small id="ingredientsHelp" class="form-text text-muted">
+            Separate each ingredient with a comma.
+          </small>
+        </div>
+        <div class="form-group my-3">
+          <%= form.label :instructions, 'Preparation Instructions', class: 'form-label' %>
+          <%= form.text_area :instructions, required: true, class: 'form-control' %>
+        </div>
+        <div class="form-group my-3">
+          <%= form.label :image_url, 'Image URL', class: 'form-label' %>
+          <%= form.text_field :image_url, class: 'form-control' %>
+        </div>
+        <%= form.submit class: 'btn btn-primary mt-3' %>
+        <%= link_to 'Cancel', recipe.new_record? ? :recipes : recipe, class: 'btn btn-secondary ml-2 mt-3' %>
+      <% end -%>
+    </div>
+  </div>
+</div>

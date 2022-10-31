@@ -1,0 +1,35 @@
+<div id="<%= dom_id recipe %>">
+  <div class="hero position-relative d-flex align-items-center justify-content-center">
+    <%= image_tag recipe.image_url.blank? ? 'default_image.jpg' : recipe.image_url, class: 'img-fluid position-absolute' %>
+    <div class="overlay bg-dark position-absolute"></div>
+    <h1 class="display-4 position-relative text-white">
+      <%= recipe.name %>
+    </h1>
+  </div>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-sm-12 col-lg-3">
+        <ul class="list-group">
+          <h5 class="mb-2">Ingredients</h5>
+          <% if recipe.ingredients.blank? -%>
+            No ingredients available
+          <% else -%>
+            <% recipe.ingredients.split(/,/).each do |ingredient| -%>
+              <li class="list-group-item"><%= ingredient %></li>
+            <% end -%>
+          <% end -%>
+        </ul>
+      </div>
+      <div class="col-sm-12 col-lg-5">
+        <h5 class="mb-2">Preparation Instructions</h5>
+        <div><%= raw recipe.instructions %></div>
+      </div>
+      <div class="col-sm-12 col-lg-4 text-end">
+        <%= link_to 'Edit Recipe', edit_recipe_path(recipe), class: 'btn btn-warning mr-2' %>
+        <%= button_to 'Delete Recipe', recipe, method: :delete, class: 'btn btn-danger', data: { confirm: 'Do you really want to remove this recipe?' } %>
+      </div>
+    </div>
+    <hr />
+    <%= link_to 'Back to recipes', recipes_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

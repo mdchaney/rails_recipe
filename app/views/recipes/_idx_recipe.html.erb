@@ -1,0 +1,11 @@
+<% recipe = idx_recipe -%>
+<div class="col-md-6 col-lg-4">
+  <div class="card mb-4">
+    <%= image_tag recipe.image_url.blank? ? 'default_image.jpg' : recipe.image_url, class: 'card-img-top', alt: "#{recipe.name} image" %>
+    <div class="card-body">
+      <h5 class="card-title"><%= recipe.name %></h5>
+      <%= link_to 'View Recipe', recipe, class: 'btn custom-button' %>
+      <%= link_to 'Edit Recipe', edit_recipe_path(recipe), class: 'btn custom-button ml-2' %>
+    </div>
+  </div>
+</div>
